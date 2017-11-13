@@ -1,0 +1,15 @@
+*{<meta charset="utf-8">}*
+#{extends 'sample/Questionnaire/main.html' /}
+<h2>コメント</h2>
+<p>自由にコメントをどうぞ．</p>
+<form action="@{postComment()}" method="post">
+  <dl>
+    <dt>コメント</dt>
+    <dd>
+      <textarea name="comment" cols="20" rows="3">(コメントを入力して下さい)</textarea>
+    </dd>
+  </dl>
+  <p>
+    <input type="submit" />
+  </p>
+</form>

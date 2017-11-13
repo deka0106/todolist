@@ -1,0 +1,44 @@
+*{<meta charset="utf-8">}*
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja-JP" xml:lang="ja-JP">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>サンプル掲示板</title>
+</head>
+<body>
+<h1>サンプル掲示板</h1>
+
+<h2>あたらしくスレッドをたてる</h2>
+
+<form action="@{postThread()}" method="post">
+  <p>
+    <textarea name="description" cols="20" rows="3">(本文を入力して下さい)</textarea>
+  </p>
+  <p>
+    <input type="submit" />
+  </p>
+</form>
+
+<h2>スレッド一覧</h2>
+
+#{list items: threads, as: 't'}
+<h3>スレッド ${t_index}</h3>
+<p>${t.description.nl2br()}</p>
+<ul>
+  #{list items: commentMap.get(t), as: 'c'}
+  <li>${c.description}</li>
+  #{/list}
+  <li>
+    <form action="@{postComment()}" method="post">
+      <p>
+        <input type="hidden" name="thread" value="${t.id}" />
+        <input type="text" name="description" size="20" value="" />
+        <input type="submit" />
+      </p>
+    </form>
+  </li>
+</ul>
+#{/list}
+
+</body>
+</html>

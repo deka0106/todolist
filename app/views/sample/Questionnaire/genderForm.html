@@ -1,0 +1,19 @@
+*{<meta charset="utf-8">}*
+#{extends 'sample/Questionnaire/main.html' /}
+<h2>性別</h2>
+<p>あなたの性別を教えてください．</p>
+<form action="@{postGender()}" method="post">
+  <ul>
+    <li>
+      <input type="radio" name="gender" value="男性" />
+      男性
+    </li>
+    <li>
+      <input type="radio" name="gender" value="女性" />
+      女性
+    </li>
+  </ul>
+  <p>
+    <input type="submit" />
+  </p>
+</form>
