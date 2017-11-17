@@ -6,19 +6,19 @@
 #{form @postRegister()}
 <p>
   #{field "name"}
-  <input type="text" id="name" name="${field.name}" placeholder="ユーザ名" value="${post?.name}" onblur="checkName()">
+  <input type="text" id="name" name="${field.name}" placeholder="ユーザ名" value="${post?.name}" onblur="check('name')">
   <span id="name_error" class="error"></span>
   #{/field}
 </p>
 <p>
   #{field "email"}
-  <input type="email" id="email" name="${field.name}" placeholder="メールアドレス" value="${post?.email}" onblur="checkEmail()">
+  <input type="email" id="email" name="${field.name}" placeholder="メールアドレス" value="${post?.email}" onblur="check('email')">
   <span id="email_error" class="error"></span>
   #{/field}
 </p>
 <p>
   #{field "password"}
-  <input type="password" id="password" name="${field.name}" placeholder="パスワード(8~20字)" onblur="checkPassword()">
+  <input type="password" id="password" name="${field.name}" placeholder="パスワード(8~20字)" onblur="check('password')">
   <span id="password_error" class="error"></span>
   #{/field}
 </p>

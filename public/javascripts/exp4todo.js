@@ -1,6 +1,10 @@
 /* exp4todo.js */
 /* -*- coding: utf-8 -*- */
 
+/**
+ * 登録フォームチェック
+ * @param field フィールド("email", "password"など)
+ */
 function check(field) {
   const req = new XMLHttpRequest();
 
@@ -26,16 +30,8 @@ function check(field) {
   req.send("value=" + enc(document.getElementById(field).value));
 }
 
-function checkName() {
-  check("name");
-}
-
-function checkEmail() {
-  check("email");
-}
-
-function checkPassword() {
-  check("password");
+function addTask(task) {
+	
 }
 
 /**

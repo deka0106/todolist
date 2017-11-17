@@ -60,7 +60,7 @@ public class User extends Model {
 	 */
 	public static User authenticate(String email, String password) {
 		User user = find("email = ?1", email).first();
-		return Objects.equals(password, user.password) ? user : null;
+		return user == null ? null : Objects.equals(password, user.password) ? user : null;
 	}
 
 }
