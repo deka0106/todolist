@@ -1,7 +1,5 @@
 package models;
 
-import java.util.Objects;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
@@ -47,20 +45,6 @@ public class User extends Model {
 		this.email = email;
 		this.password = password;
 		this.board = new Board(this);
-	}
-
-	/**
-	 * 認証
-	 *
-	 * @param email
-	 *            メールアドレス
-	 * @param password
-	 *            パスワード
-	 * @return 成功: User, 失敗: null
-	 */
-	public static User authenticate(String email, String password) {
-		User user = find("email = ?1", email).first();
-		return user == null ? null : Objects.equals(password, user.password) ? user : null;
 	}
 
 }

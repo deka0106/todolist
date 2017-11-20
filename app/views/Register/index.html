@@ -3,16 +3,27 @@
 
 <h1>登録</h1>
 
-#{form @postRegister()}
+#{if flash.error}
+  <p class="error">
+    ${messages.get(flash.error)}
+  </p>
+#{/if}
+#{if flash.success}
+  <p class="success">
+    ${messages.get(flash.success)}
+  </p>
+#{/if}
+
+#{form @confirm()}
 <p>
   #{field "name"}
-  <input type="text" id="name" name="${field.name}" placeholder="ユーザ名" value="${post?.name}" onblur="check('name')">
+  <input type="text" id="name" name="${field.name}" placeholder="ユーザ名" value="${session?.name}" onblur="check('name')">
   <span id="name_error" class="error"></span>
   #{/field}
 </p>
 <p>
   #{field "email"}
-  <input type="email" id="email" name="${field.name}" placeholder="メールアドレス" value="${post?.email}" onblur="check('email')">
+  <input type="text" id="email" name="${field.name}" placeholder="メールアドレス" value="${session?.email}" onblur="check('email')">
   <span id="email_error" class="error"></span>
   #{/field}
 </p>
@@ -26,4 +37,3 @@
   <input type="submit">
 </p>
 #{/form}
-  

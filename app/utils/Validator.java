@@ -6,19 +6,18 @@ import java.util.Map;
 import models.User;
 
 public class Validator {
-	
+
 	public static Map<String, Object> validateName(String name) {
 		Map<String, Object> map = new HashMap<>();
 
 		boolean ok = true;
-		
+
 		map.put("ok", ok);
 
 		return map;
 	}
 
 	public static Map<String, Object> validateEmail(String email) {
-
 		Map<String, Object> map = new HashMap<>();
 
 		boolean ok = true;
@@ -35,12 +34,12 @@ public class Validator {
 
 		return map;
 	}
-	
+
 	public static Map<String, Object> validatePassword(String password) {
 		Map<String, Object> map = new HashMap<>();
 
 		boolean ok = true;
-		
+
 		if (password.length() < 8) {
 			ok = false;
 			map.put("error", "パスワードが短すぎます");
@@ -48,7 +47,7 @@ public class Validator {
 			ok = false;
 			map.put("error", "パスワードが長すぎます");
 		}
-		
+
 		map.put("ok", ok);
 
 		return map;

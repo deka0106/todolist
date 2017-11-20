@@ -5,11 +5,11 @@ import play.mvc.Controller;
 public class Application extends Controller {
 
 	public static void index() {
+		// ログインしている場合
+		if (Security.isConnected()) {
+			Board.index();
+		}
 		render();
-	}
-
-	public static void login() {
-		Login.index();
 	}
 
 }

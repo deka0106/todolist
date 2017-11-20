@@ -3,68 +3,93 @@ package controllers;
 import java.util.Map;
 
 import models.User;
+import play.libs.Crypto;
 import play.mvc.Controller;
-import utils.DigestGenerator;
 import utils.Validator;
 
 public class Register extends Controller {
 
+	/**
+	 * 登録画面
+	 */
 	public static void index() {
+		// ログインしている場合/board/
+		if (Security.isConnected()) {
+			Board.index();
+		}
 		render();
 	}
 
 	/**
-	 * 登録用データを受け付ける
+	 * 確認画面
+	 *
+	 * params: name, email, password
 	 */
-	public static void postRegister() {
-		
-		/**
-		 * 入力にエラーがあるかどうか
-		 */
+	public static void confirm() {
+		// ログインしている場合/board/
+		if (Security.isConnected()) {
+			Board.index();
+		}
+
+		// 入力にエラーがあるかどうか
 		boolean ok = true;
 
+		// 結果
+		Map<String, Object> result;
+
 		String name = params.get("name");
-		session.put("name", name);
-
 		String email = params.get("email");
-		Map<String, Object> emailValidation = Validator.validateEmail(email);
-		if ((boolean) emailValidation.get("ok")) {
-			session.put("email", email);
+		String password = params.get("password");
+
+		if (name == null || email == null || password == null) {
+			flash.error("何らかのエラーが発生しました");
+			index();
 		}
 
-		String password = params.get("password");
-		String hashPassword = DigestGenerator.getSHA256(password);
-		if (password.length() < 8 || 20 < password.length()) {
-			ok = false;
-		} else {
+		result = Validator.validateName(name);
+		if ((boolean) result.get("ok")) {
+			session.put("name", name);
+		} else ok = false;
+
+		result = Validator.validateEmail(email);
+		if ((boolean) result.get("ok")) {
+			session.put("email", email);
+		} else ok = false;
+
+		String hashPassword = Crypto.passwordHash(password);
+		result = Validator.validatePassword(password);
+		if ((boolean) result.get("ok")) {
 			session.put("password", hashPassword);
-		}
-		
+		} else ok = false;
+
 		if (ok) {
-			confirm();
+			render();
 		} else {
+			flash.error("登録情報に誤りがありました");
 			index();
 		}
 	}
 
 	/**
-	 * 確認画面
-	 */
-	public static void confirm() {
-		render();
-	}
-
-	/**
 	 * 完了画面
 	 */
-	public static void complete(Map<String, String> data) {
+	public static void complete() {
+		// ログインしている場合/board/
+		if (Security.isConnected()) {
+			Board.index();
+		}
 
 		String name = session.get("name");
 		String email = session.get("email");
 		String password = session.get("password");
-		
+
+		if (name == null || email == null || password == null) {
+			flash.error("登録に失敗しました");
+			index();
+		}
+
 		session.clear();
-		
+
 		User user = new User(name, email, password);
 		user.save();
 
