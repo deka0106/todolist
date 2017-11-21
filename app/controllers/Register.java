@@ -16,6 +16,7 @@ public class Register extends Controller {
 		// ログインしている場合/board/
 		if (Security.isConnected()) {
 			Board.index();
+			return;
 		}
 		render();
 	}
@@ -23,12 +24,16 @@ public class Register extends Controller {
 	/**
 	 * 確認画面
 	 *
-	 * params: name, email, password
+	 * params:
+	 *  name 名前
+	 *  email メールアドレス
+	 *  password パスワード
 	 */
 	public static void confirm() {
 		// ログインしている場合/board/
 		if (Security.isConnected()) {
 			Board.index();
+			return;
 		}
 
 		// 入力にエラーがあるかどうか
@@ -44,6 +49,7 @@ public class Register extends Controller {
 		if (name == null || email == null || password == null) {
 			flash.error("何らかのエラーが発生しました");
 			index();
+			return;
 		}
 
 		result = Validator.validateName(name);
@@ -77,6 +83,7 @@ public class Register extends Controller {
 		// ログインしている場合/board/
 		if (Security.isConnected()) {
 			Board.index();
+			return;
 		}
 
 		String name = session.get("name");
@@ -86,6 +93,7 @@ public class Register extends Controller {
 		if (name == null || email == null || password == null) {
 			flash.error("登録に失敗しました");
 			index();
+			return;
 		}
 
 		session.clear();

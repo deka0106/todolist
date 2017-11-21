@@ -1,7 +1,7 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -52,6 +52,11 @@ public class Task extends Model {
 	 * 進捗状況
 	 */
 	public int progress;
+	
+	/**
+	 * 優先度
+	 */
+	public int priority;
 
 	/**
 	 * タグ
@@ -74,14 +79,17 @@ public class Task extends Model {
 	 *            期限日時
 	 * @param progress
 	 *            進捗状況
+	 * @param priority
+	 *            優先度
 	 */
-	public Task(Board board, String title, String detail, Date createDate, Date dueDate, int progress) {
+	public Task(Board board, String title, String detail, Date createDate, Date dueDate, int progress, int priority) {
 		this.board = board;
 		this.title = title;
 		this.detail = detail;
 		this.createDate = createDate;
 		this.dueDate = dueDate;
 		this.progress = progress;
+		this.priority = priority;
 		this.tags = new ArrayList<>();
 	}
 
