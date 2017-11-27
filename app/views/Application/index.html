@@ -1,3 +1,22 @@
 *{<meta charset="utf-8">}*
 #{extends 'Application/main.html' /}
 
+<header class="top-header">
+  <div class="left logo">&{"top.title"}</div>
+  <div class="right">
+    <a href="@{Secure.login()}" class="button">&{"secure.title"}</a>
+    <a href="@{Register.signup()}" class="button green">&{"register.title"}</a>
+  </div>
+</header>
+
+<article class="top-article large">
+  <h1 class="logo">&{"top.title"}</h1>
+  <br>
+  <h2>&{"top.catchcopy"}</h2>
+  <br>
+  <span class="quiet">&{"top.detail"}</span>
+  <br><br><br><br>
+  <a href="@{Register.signup()}" class="button green">&{"top.register"}</a>
+  <br><br>
+  <a href="@{Secure.login()}" class="button">&{"top.login"}</a>
+</article>

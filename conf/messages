@@ -9,8 +9,19 @@ register.error=登録に失敗しました
 register.complete=登録完了！
 register.login=ログインする
 register.haveAccount=アカウントをお持ちの方は
+register.noAccount=アカウントをお持ちでない方は
 register.here=こちら
+register.register=登録
+register.name=ユーザ名(例: やまだたろう)
+register.email=メールアドレス(例: ymdtr@ymdtr.jp)
+register.password=パスワード(8～20字)
 
 form.name=ユーザ名
 form.email=メールアドレス
 form.password=パスワード
+
+top.title=exp4todo
+top.catchcopy=タスク管理ツール
+top.detail=情報実験第四でPlay Frameworkを利用して制作したタスク管理ツール
+top.register=アカウントを登録する
+top.login=ログインする

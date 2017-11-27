@@ -3,7 +3,7 @@
 
 <div class="wrapper">
   <h1 class="logo">
-    exp4todo
+    &{"top.title"}
   </h1>
 
   <div class="dialog">
@@ -19,20 +19,20 @@
     #{form @authenticate()}
       #{field "name"}
       <label>&{"form.name"}</label>
-      <input type="text" id="name" name="${field.name}" placeholder="ユーザ名" value="${session?.name}" onblur="check('name')">
+      <input type="text" id="name" name="${field.name}" placeholder="&{"register.name"}" onblur="check('name')">
       <span id="name_error" class="alert"></span>
       #{/field}
       #{field "email"}
       <label>&{"form.email"}</label>
-      <input type="text" id="email" name="${field.name}" placeholder="メールアドレス" value="${session?.email}" onblur="check('email')">
+      <input type="text" id="email" name="${field.name}" placeholder="&{"register.email"}" onblur="check('email')">
       <span id="email_error" class="alert"></span>
       #{/field}
       #{field "password"}
       <label>&{"form.password"}</label>
-      <input type="password" id="password" name="${field.name}" placeholder="パスワード(8~20字)" onblur="check('password')">
+      <input type="password" id="password" name="${field.name}" placeholder="&{"register.password"}" onblur="check('password')">
       <span id="password_error" class="alert"></span>
       #{/field}
-      <input type="submit">
+      <input type="submit" value="&{"register.register"}">
     #{/form}
 
     <span class="quiet">

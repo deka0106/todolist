@@ -3,7 +3,7 @@
 
 <div class="wrapper">
   <h1 class="logo">
-    exp4todo
+    &{"top.title"}
   </h1>
 
   <div class="dialog">
@@ -23,11 +23,11 @@
     #{form @authenticate()}
       #{field "username"}
       <label>&{"form.email"}</label>
-      <input type="text" name="${field.name}" placeholder="ユーザ名">
+      <input type="text" name="${field.name}" placeholder="&{"form.name"}">
       #{/field}
       #{field "password"}
       <label>&{"form.password"}</label>
-      <input type="password" name="${field.name}" placeholder="パスワード">
+      <input type="password" name="${field.name}" placeholder="&{"form.password"}">
       #{/field}
       #{field "remember"}
       <div class="center quiet">
@@ -38,7 +38,7 @@
     #{/form}
 
     <span class="quiet">
-      ${messages.get("register.haveAccount")}<a href="@{Secure.login()}">${messages.get("register.here")}</a>
+      &{"register.noAccount"}<a href="@{Register.signup()}">&{"register.here"}</a>
     </span>
 
   </div>

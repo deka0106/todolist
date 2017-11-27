@@ -10,8 +10,67 @@ html {
     background: #F0F0F0;
 }
 
-h1.logo {
-    padding-top: 80px;
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    background: #EEE;
+    border-bottom: 8px solid #8c8;
+    z-index: 5;
+}
+
+.top-header .left {
+    display: flex;
+    justify-content: center;
+    margin: auto 20px;
+    font-size: 2.4em;
+    font-weight: bold;
+}
+
+.top-header .right {
+    display: flex;
+    justify-content: center;
+    margin: auto 20px;
+    color: #4A6;
+}
+
+.button {
+    min-width: 100px;
+    margin: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #000;
+    background: #CCC;
+    text-align: center;
+    text-decoration: none;
+}
+
+.green {
+    color: #FFF;
+    background: #6B6;
+}
+
+.top-article {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 140px 60px 40px;
+    background: #FFF;
+    text-align: center;
+}
+
+.large {
+    font-size: 1.5em;
+}
+
+.logo {
+    color: #486;
+    font-size: 2.4em;
     text-align: center;
 }
 
@@ -20,6 +79,7 @@ h1.logo {
     width: 500px;
     height: 100%;
     margin: 0 auto;
+    padding: 50px 0;
 }
 
 .dialog {
@@ -86,9 +146,16 @@ h1.logo {
 
 .dialog .error {
     display: block;
-    padding: 0, 0.2em;
+    padding: 0 0.2em;
     background: rgba(255, 0, 0, 0.1);
     color: #D00;
+}
+
+.dialog .success {
+    display: block;
+    padding: 0 0.2em;
+    background: rgba(0, 255, 0, 0.1);
+    color: #090;
 }
 
 .quiet {
