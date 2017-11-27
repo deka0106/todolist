@@ -1,0 +1,43 @@
+*{<meta charset="utf-8">}*
+#{extends 'Application/main.html' /}
+
+<div class="wrapper">
+  <h1 class="logo">
+    exp4todo
+  </h1>
+
+  <div class="dialog">
+
+    <h2>&{"register.title"}</h2>
+
+    #{if flash.error}
+    <div class="error">
+      ${messages.get(flash.error)}
+    </div>
+    #{/if}
+
+    #{form @authenticate()}
+      #{field "name"}
+      <label>&{"form.name"}</label>
+      <input type="text" id="name" name="${field.name}" placeholder="ユーザ名" value="${session?.name}" onblur="check('name')">
+      <span id="name_error" class="alert"></span>
+      #{/field}
+      #{field "email"}
+      <label>&{"form.email"}</label>
+      <input type="text" id="email" name="${field.name}" placeholder="メールアドレス" value="${session?.email}" onblur="check('email')">
+      <span id="email_error" class="alert"></span>
+      #{/field}
+      #{field "password"}
+      <label>&{"form.password"}</label>
+      <input type="password" id="password" name="${field.name}" placeholder="パスワード(8~20字)" onblur="check('password')">
+      <span id="password_error" class="alert"></span>
+      #{/field}
+      <input type="submit">
+    #{/form}
+
+    <span class="quiet">
+      &{"register.haveAccount"}<a href="@{Secure.login()}">${messages.get("register.here")}</a>
+    </span>
+
+  </div>
+</div>

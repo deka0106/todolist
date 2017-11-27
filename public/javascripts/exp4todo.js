@@ -1,57 +1,56 @@
 /* exp4todo.js */
 /* -*- coding: utf-8 -*- */
 
+
 /**
  * 登録フォームチェック
- * @param field フィールド("email", "password"など)
+ * @param key "name", "email", "password"
  */
-function check(field) {
+function check(key) {
   const req = new XMLHttpRequest();
 
   req.onreadystatechange = () => {
     if (req.readyState !== 4) return;
     if (req.status !== 200) {
-      console.log("fail to check " + field);
+      console.error("fail to check " + key);
       return;
     }
 
     const data = JSON.parse(req.responseText);
 
-    console.log(data);
     if (!data.ok) {
-      document.getElementById(field + "_error").innerHTML = data.error;
+      document.getElementById(key + "_error").innerHTML = data.error;
     } else {
-      document.getElementById(field + "_error").innerHTML = "";
+      document.getElementById(key + "_error").innerHTML = "";
     }
   }
 
-  req.open("POST", "/validation/" + field);
+  req.open("POST", "/validate/" + key);
   req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  req.send("value=" + enc(document.getElementById(field).value));
+  req.send("value=" + enc(document.getElementById(key).value));
 }
 
 /**
  * タスクの追加
- * @param task
  * @returns
  */
 function addTask() {
   const req = new XMLHttpRequest();
-  
+
   const wizard = document.getElementById("new-task-wizard");
-  
+
   const title = "たいとる";
   const detail = "しょうさい";
   const dueDate = new Date(Date.now() + 1145141919).toLocaleString();
   const progress = 1;
   const priority = 1;
   const values = {
-		  title,
-		  detail,
-		  dueDate,
-		  progress,
-		  priority
-  }
+    title,
+    detail,
+    dueDate,
+    progress,
+    priority
+  };
 
   req.onreadystatechange = () => {
     if (req.readyState !== 4) return;
@@ -76,7 +75,7 @@ function addTask() {
  * @returns
  */
 function updateStatus() {
-  
+
 }
 
 /**

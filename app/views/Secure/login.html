@@ -1,35 +1,45 @@
 *{<meta charset="utf-8">}*
 #{extends 'Application/main.html' /}
 
-	<h1>&{'secure.title'}</h1>
+<div class="wrapper">
+  <h1 class="logo">
+    exp4todo
+  </h1>
 
-	#{form @authenticate()}
+  <div class="dialog">
 
-		#{if flash.error}
-			<p class="error">
-				${messages.get(flash.error)}
-			</p>
-		#{/if}
-		#{if flash.success}
-			<p class="success">
-				${messages.get(flash.success)}
-			</p>
-		#{/if}
+    <h2>&{"secure.title"}</h2>
+    #{if flash.success}
+    <div class="success">
+      ${messages.get(flash.success)}
+    </div>
+    #{/if}
+    #{if flash.error}
+    <div class="error">
+      ${messages.get(flash.error)}
+    </div>
+    #{/if}
 
-		<p id="username-field">
-			<label for="username">&{'secure.username'}</label>
-			<input type="text" name="username" id="username" value="${flash.username}" />
-		</p>
-		<p id="password-field">
-			<label for="password">&{'secure.password'}</label>
-			<input type="password" name="password" id="password" value="" />
-		</p>
-		<p id="remember-field">
-			<input type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
-			<label for="remember">&{'secure.remember'}</label>
-		</p>
-		<p id="signin-field">
-			<input type="submit" id="signin" value="&{'secure.signin'}" />
-		</p>
-	#{/form}
+    #{form @authenticate()}
+      #{field "username"}
+      <label>&{"form.email"}</label>
+      <input type="text" name="${field.name}" placeholder="ユーザ名">
+      #{/field}
+      #{field "password"}
+      <label>&{"form.password"}</label>
+      <input type="password" name="${field.name}" placeholder="パスワード">
+      #{/field}
+      #{field "remember"}
+      <div class="center quiet">
+        <input type="checkbox" id="${field.name}" name="${field.name}" value="true" ${flash.remember ? 'checked="true"' : ''}>&{"secure.remember"}
+      </div>
+      #{/field}
+      <input type="submit" value="&{"secure.login"}">
+    #{/form}
+
+    <span class="quiet">
+      ${messages.get("register.haveAccount")}<a href="@{Secure.login()}">${messages.get("register.here")}</a>
+    </span>
+
+  </div>
 </div>

@@ -1,9 +1,16 @@
 secure.title=ログイン
-secure.username=メールアドレス
-secure.password=パスワード
 secure.remember=ログイン状態を保持する
-secure.signin=ログイン
 secure.error=メールアドレスまたはパスワードが間違っています
+secure.login=ログイン
 secure.logout=ログアウトしました
 
 register.title=登録
+register.error=登録に失敗しました
+register.complete=登録完了！
+register.login=ログインする
+register.haveAccount=アカウントをお持ちの方は
+register.here=こちら
+
+form.name=ユーザ名
+form.email=メールアドレス
+form.password=パスワード

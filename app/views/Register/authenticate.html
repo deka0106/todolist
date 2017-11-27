@@ -1,0 +1,15 @@
+*{<meta charset="utf-8">}*
+#{extends 'Application/main.html' /}
+
+<div class="wrapper">
+  <h1 class="logo">
+    exp4todo
+  </h1>
+
+  <div class="dialog">
+
+    <h2>${messages.get("register.complete")}</h2>
+
+    <a href="@{Secure.login()}">${messages.get("register.login")}</a>
+  </div>
+</div>

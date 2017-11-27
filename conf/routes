@@ -8,10 +8,23 @@ GET     /robots.txt                             404
 # /app/static/ に置かれた静的リソースを /public/ で公開
 GET     /public/                                staticDir:public
 
-# exp4todo
+# アプリ紹介
 GET     /                                       Application.index
-*       /{action}                               Application.{action}
 
-# 上記以外のリクエストをすべて受け取る
-*       /{controller}/                          {controller}.index
-*       /{controller}/{action}                  {controller}.{action}
+# ログイン
+*       /                                       module:secure
+
+# 登録
+GET     /signup                                 Register.signup
+POST    /signup                                 Register.authenticate
+
+# 登録情報検証
+POST    /validate/{action}                      Validate.{action}
+
+# ボード
+GET     /board/                                 Board.index
+POST    /board/{action}                         Board.{action}
+
+# 設定
+GET     /setting/                               Setting.index
+POST    /setting/{action}                       Setting.{action}

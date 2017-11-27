@@ -1,7 +1,7 @@
 package models;
 
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -21,6 +21,10 @@ public class Task extends Model {
 
 	/** 進捗状況: 完了 */
 	public static int DONE = 2;
+
+	/** 優先度 範囲 */
+	public static int PRIORITY_MIN = 1;
+	public static int PRIORITY_MAX = 10;
 
 	/**
 	 * ボード
@@ -52,7 +56,7 @@ public class Task extends Model {
 	 * 進捗状況
 	 */
 	public int progress;
-	
+
 	/**
 	 * 優先度
 	 */
@@ -91,6 +95,20 @@ public class Task extends Model {
 		this.progress = progress;
 		this.priority = priority;
 		this.tags = new ArrayList<>();
+	}
+
+	@Override
+	public Task save() {
+		correct();
+		return super.save();
+	}
+
+	/**
+	 * 不正値を訂正する
+	 */
+	public void correct() {
+		progress = progress < TODO ? TODO : DONE < progress ? DONE : progress;
+		priority = priority < PRIORITY_MIN ? PRIORITY_MIN : PRIORITY_MAX < priority ? PRIORITY_MAX : priority;
 	}
 
 }
