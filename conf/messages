@@ -25,3 +25,11 @@ top.catchcopy=タスク管理ツール
 top.detail=情報実験第四でPlay Frameworkを利用して制作したタスク管理ツール
 top.register=アカウントを登録する
 top.login=ログインする
+
+board.logout=ログアウト
+board.todo=ToDo
+board.doing=Doing
+board.done=Done
+board.load=ロードする
+
+setting.title=設定

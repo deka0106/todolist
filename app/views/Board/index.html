@@ -1,6 +1,57 @@
 *{<meta charset="utf-8">}*
 #{extends 'Application/main.html' /}
 
-<h1>ボード</h1>
+<header class="board-header">
+  <div class="left white-logo">&{"top.title"}</div>
+  <div class="right">
+    <a href="@{Setting.index()}" class="button green">&{"setting.title"}</a>
+    <a href="@{Secure.logout()}" class="button green">&{"board.logout"}</a>
+  </div>
+</header>
 
-<button onclick="addTask()"></button>
+<div class="board-wapper">
+  <div class="board">
+    <div class="list">
+      <div class="list-header">&{"board.todo"}</div>
+      <div class="tasks">
+        <div onclick="" class="task">
+          <div class="task-title">ながーいたいとる</div>
+          <div class="task-detail">せつめいながいぶんしょうでも入りきるかな</div>
+          <div class="task-due">11/4 5:14</div>
+          <div class="task-priority">5</div>
+        </div>
+        <div onclick="" class="task-load">
+           &{"board.load"}
+        </div>
+      </div>
+    </div>
+    <div class="list">
+      <div class="list-header">&{"board.doing"}</div>
+      <div class="tasks">
+        <div onclick="" class="task">
+          <div class="task-title">ながーいたいとる</div>
+          <div class="task-detail">せつめいながいぶんしょうでも入りきるかな</div>
+          <div class="task-due">11/4 5:14</div>
+          <div class="task-priority">5</div>
+        </div>
+        <div onclick="" class="task-load">
+          &{"board.load"}
+        </div>
+      </div>
+    </div>
+    <div class="list">
+      <div class="list-header">&{"board.done"}</div>
+      <div class="tasks">
+        <div onclick="" class="task">
+          <div class="task-title">ながーいたいとる</div>
+          <div class="task-detail">せつめいながいぶんしょうでも入りきるかな</div>
+          <div class="task-due">11/4 5:14</div>
+          <div class="task-priority">5</div>
+        </div>
+        <div onclick="" class="task-load">
+           &{"board.load"}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
