@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -32,7 +33,7 @@ public class Task extends Model {
 	/**
 	 * ボード
 	 */
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	public Board board;
 
 	/**

@@ -32,10 +32,14 @@ board.doing=Doing
 board.done=Done
 board.load=ロードする
 board.newTask=新規タスク
-board.due=期　限:
+board.dueDate=期　限:
 board.priority=優先度:
 board.title=タイトル
 board.detail=詳細説明
 board.create=作成
+board.editTask=タスクの編集
+board.update=更新する
+board.cancel=キャンセル
+board.delete=削除する
 
 setting.title=設定

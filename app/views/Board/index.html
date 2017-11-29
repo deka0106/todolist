@@ -16,7 +16,7 @@
       <textarea id="new-title" class="new-text" rows="1" placeholder="&{"board.title"}"></textarea>
     </div>
     <div class="new-task-info">
-      <label class="new-label">&{"board.due"}</label><input type="datetime-local" id="new-due" class="new-datetime">
+      <label class="new-label">&{"board.dueDate"}</label><input type="datetime-local" id="new-dueDate" class="new-datetime">
     </div>
     <div class="new-task-info">
       <label class="new-label">&{"board.priority"}</label><input type="number" id="new-priority" class="new-number" step="1" min="1" max="10">
@@ -27,10 +27,33 @@
       <textarea id="new-detail" class="new-text" rows="3" placeholder="&{"board.detail"}"></textarea>
     </div>
   </div>
-  <div onclick="addTask()" class="button green new-create">&{"board.create"}</div>
+  <div onclick="addTask()" class="button green">&{"board.create"}</div>
 </div>
 
-<div id="edit-task" class="new-task"></div>
+<div id="edit-task" class="new-task">
+  <div class="new-task-header">&{"board.editTask"}</div>
+  <div class="new-task-infos">
+    <div class="new-task-info">
+      <textarea id="edit-title" class="new-text" rows="1" placeholder="&{"board.title"}"></textarea>
+    </div>
+    <div class="new-task-info">
+      <label class="new-label">&{"board.dueDate"}</label><input type="datetime-local" id="edit-dueDate" class="new-datetime">
+    </div>
+    <div class="new-task-info">
+      <label class="new-label">&{"board.priority"}</label><input type="number" id="edit-priority" class="new-number" step="1" min="1" max="10">
+    </div>
+  </div>
+  <div class="new-task-infos">
+    <div class="new-task-info">
+      <textarea id="edit-detail" class="new-text" rows="3" placeholder="&{"board.detail"}"></textarea>
+    </div>
+  </div>
+  <div class="edit-buttons">
+    <div id="update-button" class="button green">&{"board.update"}</div>
+    <div onclick="closePopup()" class="button gray">&{"board.cancel"}</div>
+    <div id="delete-button" class="button red">&{"board.delete"}</div>
+  </div>
+</div>
 
 <div onclick="closePopup()" id="popup-back" class="popup-back"></div>
 

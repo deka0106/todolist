@@ -34,7 +34,7 @@ function addTask() {
   tmp = document.getElementById("new-detail");
   const detail = tmp ? tmp.value : null;
   tmp.value = "";
-  tmp = document.getElementById("new-due");
+  tmp = document.getElementById("new-dueDate");
   const dueDate = tmp && tmp.value !== "" ? new Date(tmp.value).toLocaleString() : null;
   if (tmp) tmp.value = "";
   tmp = document.getElementById("new-progress");
@@ -61,7 +61,7 @@ function addTask() {
     const data = JSON.parse(req.responseText);
 
     if (!data.ok) {
-      console.error("something wrong add task");
+      console.error(data.error);
     } else {
       const t = data.task;
       const task = makeTaskHtml(t.id, t.title, t.detail, t.dueDate, t.priority);
@@ -72,6 +72,8 @@ function addTask() {
       const next = list.children[index];
       list.insertBefore(task, next);
     }
+
+    closePopup();
   }
 
   req.open("POST", "/board/addTask");
@@ -81,32 +83,74 @@ function addTask() {
 
 /**
  * タスクの編集
- * @returns
+ * @param id タスクID
  */
-function editTask() {
+function editTask(id) {
   const req = new XMLHttpRequest();
 
-  let tmp = document.getElementById("new-title");
-  const title = tmp ? tmp.value : null;
-  tmp.value = "";
-  tmp = document.getElementById("new-detail");
-  const detail = tmp ? tmp.value : null;
-  tmp.value = "";
-  tmp = document.getElementById("new-due");
-  const dueDate = tmp && tmp.value !== "" ? new Date(tmp.value).toLocaleString() : null;
-  tmp.value = "";
-  tmp = document.getElementById("new-progress");
-  const progress = tmp && tmp.value ? parseInt(tmp.value) : null;
-  tmp.value = "";
-  tmp = document.getElementById("new-priority");
-  const priority = tmp && tmp.value ? parseInt(tmp.value) : null;
-  tmp.value = "";
+  if (!id) {
+    console.error("need task id");
+  }
+
+  id += "";
   const values = {
-    title,
-    detail,
-    dueDate,
-    progress,
-    priority
+    taskId: id
+  };
+
+  let tmp = document.getElementById("edit-title");
+  if (tmp && tmp.value) values.title = tmp.value;
+  tmp = document.getElementById("edit-detail");
+  if (tmp && tmp.value) values.detail = tmp.value;
+  tmp = document.getElementById("edit-dueDate");
+  if (tmp) values.dueDate = tmp.value ? new Date(tmp.value).toLocaleString() : null;
+  tmp = document.getElementById("edit-priority");
+  if (tmp && tmp.value) values.priority = parseInt(tmp.value);
+
+  req.onreadystatechange = () => {
+    if (req.readyState !== 4) return;
+    if (req.status !== 200) {
+      console.error("fail to add task");
+      return;
+    }
+
+    const data = JSON.parse(req.responseText);
+
+    if (!data.ok) {
+      console.error(data.error);
+    } else {
+      const t = data.task;
+      const list = document.getElementById(PROGRESS[t.progress]);
+      list.removeChild(taskIdToEl[t.id]);
+      const task = makeTaskHtml(t.id, t.title, t.detail, t.dueDate, t.priority);
+      taskIdToEl[t.id] = task;
+      taskIdToTask[t.id] = t;
+      const index = insertTask(t);
+      const next = list.children[index];
+      list.insertBefore(task, next);
+    }
+
+    closePopup();
+  }
+
+  req.open("POST", "/board/editTask");
+  req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  req.send(toQuery(values));
+}
+
+/**
+ * タスクの削除
+ * @param id タスクID
+ */
+function deleteTask(id) {
+  const req = new XMLHttpRequest();
+
+  if (!id) {
+    console.error("need task id");
+  }
+
+  id += "";
+  const values = {
+    taskId: id
   };
 
   req.onreadystatechange = () => {
@@ -118,10 +162,18 @@ function editTask() {
 
     const data = JSON.parse(req.responseText);
 
-    console.log(data);
+    if (!data.ok) {
+      console.error(data.error);
+    } else {
+      const t = taskIdToTask[id];
+      const list = document.getElementById(PROGRESS[t.progress]);
+      list.removeChild(taskIdToEl[t.id]);
+    }
+
+    closePopup();
   }
 
-  req.open("POST", "/board/addTask");
+  req.open("POST", "/board/deleteTask");
   req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   req.send(toQuery(values));
 }
@@ -160,7 +212,7 @@ function moveTask(id, dir) {
     const data = JSON.parse(req.responseText);
 
     if (!data.ok) {
-      console.error("something wrong move task");
+      console.error(data.error);
     } else {
       list.removeChild(taskEl);
       task = data.task;
@@ -207,7 +259,7 @@ function loadTasks(progress, num) {
     const data = JSON.parse(req.responseText);
 
     if (!data.ok) {
-      console.error("something wrong load task");
+      console.error(data.error);
     } else {
       data.tasks.forEach(t => {
         const task = makeTaskHtml(t.id, t.title, t.detail, t.dueDate, t.priority);
@@ -308,12 +360,32 @@ function openNewTask() {
  * @param id タスクID
  */
 function openTask(id) {
+  id += "";
+
+  const task = taskIdToTask[id];
+
+  const updateButton = document.getElementById("update-button");
+  updateButton.onclick = new Function("editTask(" + id + ")");
+  const deleteButton = document.getElementById("delete-button");
+  deleteButton.onclick = new Function("deleteTask(" + id + ")");
+
+  const title = document.getElementById("edit-title");
+  title.value = task.title;
+  const detail = document.getElementById("edit-detail");
+  detail.value = task.detail;
+  const priority = document.getElementById("edit-priority");
+  priority.value = task.priority;
+  const dueDate = document.getElementById("edit-dueDate");
+  if (task.dueDate) {
+    const date = new Date(task.dueDate);
+    let s = date.toISOString();
+    s = s.substring(0, s.length - 5);
+    dueDate.value = s;
+  } else dueDate.value = "";
   const back = document.getElementById("popup-back");
   const editTask = document.getElementById("edit-task");
   back.style.display = "block";
   editTask.style.display = "block";
-  id += "";
-  
 }
 
 /**

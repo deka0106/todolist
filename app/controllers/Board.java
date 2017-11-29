@@ -141,6 +141,41 @@ public class Board extends Controller {
 	}
 
 	/**
+	 * タスクの削除
+	 * params:
+	 * taskId タスクID
+	 */
+	public static void deleteTask() {
+		Logger.log(params.all().keySet());
+
+		Map<String, Object> map = new HashMap<>();
+
+		// タスクIDは必須
+		if (!params._contains("taskId")) {
+			map.put("ok", false);
+			map.put("error", "No taskId");
+			renderJSON(map);
+			return;
+		}
+
+		User user = User.find("email = ?1", Security.connected()).first();
+		Task task = Task.find("board_id = ?1 and id = ?2", user.board.id, Long.parseLong(params.get("taskId"))).first();
+
+		if (task == null) {
+			map.put("ok", false);
+			map.put("error", "Not found");
+			renderJSON(map);
+			return;
+		}
+
+		task.delete();
+
+		map.put("ok", true);
+
+		renderJSON(map);
+	}
+
+	/**
 	 * タスクの取得
 	 * params:
 	 * first 取得する最初のタスクのインデックス

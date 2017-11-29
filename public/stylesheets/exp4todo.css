@@ -50,9 +50,19 @@ html {
     text-decoration: none;
 }
 
+.gray {
+    color: #FFF;
+    background: #AAA;
+}
+
 .green {
     color: #FFF;
     background: #6B6;
+}
+
+.red {
+    color: #FFF;
+    background: #B43;
 }
 
 .top-article {
@@ -413,21 +423,22 @@ html {
     width: 55px;
 }
 
+.edit-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+}
+
+.edit-buttons .button {
+    width: 100%;
+}
+
 .flex-two {
     flex: 2;
 }
 
 .flex-three {
     flex: 3;
-}
-
-.new-create {
-    cursor: pointer;
-}
-
-.test {
-    width: 100px;
-    height: 100px;
 }
 
 .popup-back {
