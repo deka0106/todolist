@@ -44,6 +44,7 @@ html {
     font-size: 1.2em;
     font-weight: bold;
     color: #000;
+    cursor: pointer;
     background: #CCC;
     text-align: center;
     text-decoration: none;
@@ -204,11 +205,11 @@ html {
     height: 100%;
     position: absolute;
     padding: 140px 40px 40px;
-    background: #80D0A0;
+    background: #A0E0B0;
 }
 
 .board {
-    max-height: calc(100% - 250px);
+    max-height: calc(100% - 60px);
     display: flex;
     list-style: none;
 }
@@ -261,6 +262,7 @@ html {
     text-decoration: none;
     border-radius: 5px;
     background: #FFF;
+    z-index: 5;
     cursor: pointer;
 }
 
@@ -272,9 +274,11 @@ html {
     border-bottom: 1px solid #DDD;
 }
 
-.task-detail {}
+.task-detail {
+    min-height: 1em;
+}
 
-.task-due {
+.task-dueDate {
     color: #AAA;
 }
 
@@ -291,6 +295,14 @@ html {
     top: 6px;
 }
 
+.task-back {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 .task-load {
     margin: 5px;
     bottom: 0;
@@ -299,17 +311,8 @@ html {
     cursor: pointer;
 }
 
-.new-task {
-    display: block;
-    min-width: 360px;
-    max-width: 760px;
-    margin: 0 auto 20px;
-    padding: 10px;
-    background: #DEC;
-    border-radius: 5px;
-}
-
 .move-task {
+    display: block;
     position: absolute;
     width: 30px;
     height: 80%;
@@ -317,12 +320,14 @@ html {
     bottom: 0;
     margin-top: auto;
     margin-bottom: auto;
+    cursor: pointer;
+    pointer-events: all;
     z-index: 10;
 }
 
 .move-task-left {
     left: 0;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.01);
 }
 
 .move-task-left:hover {
@@ -332,12 +337,29 @@ html {
 
 .move-task-right {
     right: 0;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.01);
 }
 
 .move-task-right:hover {
     background: linear-gradient(to bottom left, transparent 50%, rgba(220, 240, 220, 0.6) 50%) no-repeat top left/100% 50%,
     linear-gradient(to top left, transparent 50%, rgba(220, 240, 220, 0.6) 50%) no-repeat bottom right/100% 50%;
+}
+
+.new-task {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    background: #DEC;
+    border-radius: 10px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+    width: 80%;
+    min-width: 360px;
+    max-width: 760px;
+    display: none;
+    z-index: 20;
+    background: #EFE;
 }
 
 .new-task-header {
@@ -401,4 +423,18 @@ html {
 
 .new-create {
     cursor: pointer;
+}
+
+.test {
+    width: 100px;
+    height: 100px;
+}
+
+.popup-back {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 15;
+    background: rgba(0, 0, 0, 0.5);
 }

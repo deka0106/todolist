@@ -9,27 +9,32 @@
   </div>
 </header>
 
-<div class="board-wapper">
-  <div class="new-task">
-    <div class="new-task-header">&{"board.newTask"}</div>
-    <div class="new-task-infos">
-      <div class="new-task-info">
-        <textarea id="new-title" class="new-text" rows="1" placeholder="&{"board.title"}"></textarea>
-      </div>
-      <div class="new-task-info">
-        <label class="new-label">&{"board.due"}</label><input type="datetime-local" id="new-due" class="new-datetime">
-      </div>
-      <div class="new-task-info">
-        <label class="new-label">&{"board.priority"}</label><input type="number" id="new-priority" class="new-number" step="1" min="1" max="10">
-      </div>
+<div id="new-task" class="new-task">
+  <div class="new-task-header">&{"board.newTask"}</div>
+  <div class="new-task-infos">
+    <div class="new-task-info">
+      <textarea id="new-title" class="new-text" rows="1" placeholder="&{"board.title"}"></textarea>
     </div>
-    <div class="new-task-infos">
-      <div class="new-task-info">
-        <textarea id="new-detail" class="new-text" rows="3" placeholder="&{"board.detail"}"></textarea>
-      </div>
+    <div class="new-task-info">
+      <label class="new-label">&{"board.due"}</label><input type="datetime-local" id="new-due" class="new-datetime">
     </div>
-    <div onclick="addTask()" class="button green new-create">&{"board.create"}</div>
+    <div class="new-task-info">
+      <label class="new-label">&{"board.priority"}</label><input type="number" id="new-priority" class="new-number" step="1" min="1" max="10">
+    </div>
   </div>
+  <div class="new-task-infos">
+    <div class="new-task-info">
+      <textarea id="new-detail" class="new-text" rows="3" placeholder="&{"board.detail"}"></textarea>
+    </div>
+  </div>
+  <div onclick="addTask()" class="button green new-create">&{"board.create"}</div>
+</div>
+
+<div id="edit-task" class="new-task"></div>
+
+<div onclick="closePopup()" id="popup-back" class="popup-back"></div>
+
+<div class="board-wapper">
   <div class="board">
     <div class="list">
       <div class="list-header">&{"board.todo"}</div>
@@ -59,4 +64,7 @@
       </div>
     </div>
   </div>
+  <div onclick="openNewTask()" class="button green">タスクの新規作成</div>
 </div>
+
+<script type="text/javascript" src="@{'/public/javascripts/board.js'}"></script>
