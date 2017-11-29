@@ -208,7 +208,7 @@ html {
 }
 
 .board {
-    max-height: 100%;
+    max-height: calc(100% - 250px);
     display: flex;
     list-style: none;
 }
@@ -216,6 +216,7 @@ html {
 .list {
     margin: 10px;
     border-radius: 5px;
+    padding: 0 5px;
     background: #DEC;
     flex: 1;
 }
@@ -268,7 +269,7 @@ html {
 
 .task-detail {}
 
-.task-due {
+.task-dueDate {
     color: #AAA;
 }
 
@@ -289,5 +290,109 @@ html {
     margin: 5px;
     text-align: center;
     color: #BBB;
+    cursor: pointer;
+}
+
+.new-task {
+    display: block;
+    min-width: 360px;
+    max-width: 760px;
+    margin: 0 auto 20px;
+    padding: 10px;
+    background: #DEC;
+    border-radius: 5px;
+}
+
+.move-task {
+    position: absolute;
+    width: 30px;
+    height: 80%;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    z-index: 10;
+}
+
+.move-task-left {
+    left: 0;
+    background: transparent;
+}
+
+.move-task-left:hover {
+    background: linear-gradient(to top right, transparent 50%, rgba(220, 240, 220, 0.6) 50%) no-repeat bottom left/100% 50%,
+    linear-gradient(to bottom right, transparent 50%, rgba(220, 240, 220, 0.6) 50%) no-repeat top right/100% 50%;
+}
+
+.move-task-right {
+    right: 0;
+    background: transparent;
+}
+
+.move-task-right:hover {
+    background: linear-gradient(to bottom left, transparent 50%, rgba(220, 240, 220, 0.6) 50%) no-repeat top left/100% 50%,
+    linear-gradient(to top left, transparent 50%, rgba(220, 240, 220, 0.6) 50%) no-repeat bottom right/100% 50%;
+}
+
+.new-task-header {
+    margin-bottom: 5px;
+    text-align: center;
+    color: #684;
+    font-weight: bold;
+    font-size: 1.4em;
+    border-bottom: 2px solid #ADB;
+}
+
+.new-task-infos {
+    display: flex;
+    list-style: none;
+}
+
+.new-task-info {
+    margin: 5px 5px 0;
+    flex: 1;
+}
+
+.new-text {
+    resize: none;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid #CDC;
+}
+
+.new-datetime {
+    resize: none;
+    width: calc(100% - 60px);
+    margin-left: 5px;
+    padding: 1.5px 5px;
+    border-radius: 5px;
+    border: 2px solid #CDC;
+}
+
+.new-number {
+    resize: none;
+    width: calc(100% - 60px);
+    margin-left: 5px;
+    padding: 4px 5px;
+    border-radius: 5px;
+    border: 2px solid #CDC;
+}
+
+.new-label {
+    text-align: right;
+    display: inline-block;
+    width: 55px;
+}
+
+.flex-two {
+    flex: 2;
+}
+
+.flex-three {
+    flex: 3;
+}
+
+.new-create {
     cursor: pointer;
 }

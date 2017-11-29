@@ -2,7 +2,10 @@ package models;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -109,6 +112,22 @@ public class Task extends Model {
 	public void correct() {
 		progress = progress < TODO ? TODO : DONE < progress ? DONE : progress;
 		priority = priority < PRIORITY_MIN ? PRIORITY_MIN : PRIORITY_MAX < priority ? PRIORITY_MAX : priority;
+	}
+
+	/**
+	 * HashMapとして返す
+	 */
+	public Map<String, Object> toMap() {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("title", title);
+		map.put("detail", detail);
+		map.put("createDate", createDate);
+		map.put("dueDate", dueDate);
+		map.put("progress", progress);
+		map.put("priority", priority);
+		map.put("tags", tags.stream().map(tag -> tag.name).collect(Collectors.toList()));
+		return map;
 	}
 
 }

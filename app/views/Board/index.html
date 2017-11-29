@@ -10,47 +10,46 @@
 </header>
 
 <div class="board-wapper">
+  <div class="new-task">
+    <div class="new-task-header">&{"board.newTask"}</div>
+    <div class="new-task-infos">
+      <div class="new-task-info">
+        <textarea id="new-title" class="new-text" rows="1" placeholder="&{"board.title"}"></textarea>
+      </div>
+      <div class="new-task-info">
+        <label class="new-label">&{"board.due"}</label><input type="datetime-local" id="new-due" class="new-datetime">
+      </div>
+      <div class="new-task-info">
+        <label class="new-label">&{"board.priority"}</label><input type="number" id="new-priority" class="new-number" step="1" min="1" max="10">
+      </div>
+    </div>
+    <div class="new-task-infos">
+      <div class="new-task-info">
+        <textarea id="new-detail" class="new-text" rows="3" placeholder="&{"board.detail"}"></textarea>
+      </div>
+    </div>
+    <div onclick="addTask()" class="button green new-create">&{"board.create"}</div>
+  </div>
   <div class="board">
     <div class="list">
       <div class="list-header">&{"board.todo"}</div>
-      <div class="tasks">
-        <div onclick="" class="task">
-          <div class="task-title">ながーいたいとる</div>
-          <div class="task-detail">せつめいながいぶんしょうでも入りきるかな</div>
-          <div class="task-due">11/4 5:14</div>
-          <div class="task-priority">5</div>
-        </div>
-        <div onclick="" class="task-load">
-           &{"board.load"}
-        </div>
+      <div id="todo" class="tasks"></div>
+      <div onclick="loadTasks(0, 10)" class="task-load">
+        &{"board.load"}
       </div>
     </div>
     <div class="list">
       <div class="list-header">&{"board.doing"}</div>
-      <div class="tasks">
-        <div onclick="" class="task">
-          <div class="task-title">ながーいたいとる</div>
-          <div class="task-detail">せつめいながいぶんしょうでも入りきるかな</div>
-          <div class="task-due">11/4 5:14</div>
-          <div class="task-priority">5</div>
-        </div>
-        <div onclick="" class="task-load">
-          &{"board.load"}
-        </div>
+      <div id="doing" class="tasks"></div>
+      <div onclick="loadTasks(1, 10)" class="task-load">
+        &{"board.load"}
       </div>
     </div>
     <div class="list">
       <div class="list-header">&{"board.done"}</div>
-      <div class="tasks">
-        <div onclick="" class="task">
-          <div class="task-title">ながーいたいとる</div>
-          <div class="task-detail">せつめいながいぶんしょうでも入りきるかな</div>
-          <div class="task-due">11/4 5:14</div>
-          <div class="task-priority">5</div>
-        </div>
-        <div onclick="" class="task-load">
-           &{"board.load"}
-        </div>
+      <div id="done" class="tasks"> </div>
+      <div onclick="loadTasks(2, 10)" class="task-load">
+        &{"board.load"}
       </div>
     </div>
   </div>
