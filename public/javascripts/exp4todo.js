@@ -86,8 +86,9 @@ function addTask() {
       console.error("something wrong add task");
     } else {
       const t = data.task;
-      const task = makeTaskHtml(t.id, t.title, t.detail, t.dueDate ? dateToStr(new Date(t.dueDate)) : null, t.priority);
+      const task = makeTaskHtml(t.id, t.title, t.detail, t.dueDate, t.priority);
       taskIdToEl[t.id] = task;
+      taskIdToTask[t.id] = t;
       const list = document.getElementById(PROGRESS[t.progress]);
       const index = insertTask(t);
       const next = list.children[index];
@@ -230,7 +231,7 @@ function loadTasks(progress, num) {
       console.error("something wrong load task");
     } else {
       data.tasks.forEach(t => {
-        const task = makeTaskHtml(t.id, t.title, t.detail, t.dueDate ? dateToStr(new Date(t.dueDate)) : null, t.priority);
+        const task = makeTaskHtml(t.id, t.title, t.detail, t.dueDate, t.priority);
         taskIdToTask[t.id] = t;
         taskIdToEl[t.id] = task;
         const index = insertTask(t);
@@ -311,7 +312,7 @@ function updateTasks(progress) {
     if (taskIdToEl[t.id]) {
       task = taskIdToEl[t.id];
     } else {
-      task = makeTaskHtml(t.id, t.title, t.detail, t.dueDate ? dateToStr(new Date(t.dueDate)) : null, t.priority);
+      task = makeTaskHtml(t.id, t.title, t.detail, t.dueDate, t.priority);
       taskIdToEl[t.id] = task;
     }
     list.insertBefore(task, next);
@@ -328,7 +329,7 @@ function makeTaskHtml(id, title, detail, dueDate, priority) {
   str += '<div onclick="' + "moveTask('" + escapeHtml(id) + "', 1)" + '" class="move-task move-task-right"></div>';
   str += '<div class="task-title">' + escapeHtml(title) + '</div>';
   str += '<div class="task-detail">' + escapeHtml(detail) + '</div>';
-  if (dueDate) str += '<div class="task-dueDate">' + escapeHtml(dueDate) + '</div>';
+  if (dueDate) str += '<div class="task-dueDate">' + escapeHtml(dateToStr(new Date(dueDate))) + '</div>';
   str += '<div class="task-priority">' + escapeHtml(priority) + '</div>';
   str += '</div>';
   return toElement(str);

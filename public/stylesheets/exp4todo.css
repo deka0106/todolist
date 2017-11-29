@@ -234,17 +234,22 @@ html {
     position: relative;
     display: flex;
     flex-direction: column;
+}
+
+.list-body {
+    max-height: calc(100% - 90px);
+    position: relative;
     margin-top: 20px;
     padding: 0 16px 10px;
     overflow-y: scroll;
 }
 
-.tasks::-webkit-scrollbar {
+.list-body::-webkit-scrollbar {
     height: 10px;
     width: 10px;
 }
 
-.tasks::-webkit-scrollbar-thumb {
+.list-body::-webkit-scrollbar-thumb {
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.6);
 }
@@ -269,7 +274,7 @@ html {
 
 .task-detail {}
 
-.task-dueDate {
+.task-due {
     color: #AAA;
 }
 
@@ -288,6 +293,7 @@ html {
 
 .task-load {
     margin: 5px;
+    bottom: 0;
     text-align: center;
     color: #BBB;
     cursor: pointer;

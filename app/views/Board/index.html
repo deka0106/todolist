@@ -33,23 +33,29 @@
   <div class="board">
     <div class="list">
       <div class="list-header">&{"board.todo"}</div>
-      <div id="todo" class="tasks"></div>
-      <div onclick="loadTasks(0, 10)" class="task-load">
-        &{"board.load"}
+      <div class="list-body">
+        <div id="todo" class="tasks"></div>
+        <div onclick="loadTasks(0, 10)" class="task-load">
+          &{"board.load"}
+        </div>
       </div>
     </div>
     <div class="list">
       <div class="list-header">&{"board.doing"}</div>
-      <div id="doing" class="tasks"></div>
-      <div onclick="loadTasks(1, 10)" class="task-load">
-        &{"board.load"}
+      <div class="list-body">
+        <div id="doing" class="tasks"></div>
+        <div onclick="loadTasks(1, 10)" class="task-load">
+          &{"board.load"}
+        </div>
       </div>
     </div>
     <div class="list">
       <div class="list-header">&{"board.done"}</div>
-      <div id="done" class="tasks"> </div>
-      <div onclick="loadTasks(2, 10)" class="task-load">
-        &{"board.load"}
+      <div class="list-body">
+        <div id="done" class="tasks"></div>
+        <div onclick="loadTasks(2, 10)" class="task-load">
+          &{"board.load"}
+        </div>
       </div>
     </div>
   </div>
