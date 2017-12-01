@@ -1,17 +1,13 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import play.db.jpa.JPABase;
 import play.db.jpa.Model;
 
 @Entity
@@ -33,7 +29,7 @@ public class Task extends Model {
 	/**
 	 * ボード
 	 */
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	public Board board;
 
 	/**
@@ -67,12 +63,6 @@ public class Task extends Model {
 	public int priority;
 
 	/**
-	 * タグ
-	 */
-	@ManyToMany
-	public List<Tag> tags;
-
-	/**
 	 * コンストラクタ
 	 *
 	 * @param board
@@ -98,13 +88,20 @@ public class Task extends Model {
 		this.dueDate = dueDate;
 		this.progress = progress;
 		this.priority = priority;
-		this.tags = new ArrayList<>();
 	}
 
 	@Override
 	public Task save() {
 		correct();
 		return super.save();
+	}
+
+	@Override
+	public <T extends JPABase> T delete() {
+		this.board.tasks.remove(this);
+		this.board.save();
+		this.save();
+		return super.delete();
 	}
 
 	/**
@@ -127,7 +124,6 @@ public class Task extends Model {
 		map.put("dueDate", dueDate);
 		map.put("progress", progress);
 		map.put("priority", priority);
-		map.put("tags", tags.stream().map(tag -> tag.name).collect(Collectors.toList()));
 		return map;
 	}
 

@@ -156,7 +156,7 @@ function deleteTask(id) {
   req.onreadystatechange = () => {
     if (req.readyState !== 4) return;
     if (req.status !== 200) {
-      console.error("fail to add task");
+      console.error("fail to delete task");
       return;
     }
 

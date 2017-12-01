@@ -4,8 +4,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.jamonapi.utils.Logger;
@@ -207,7 +207,7 @@ public class Board extends Controller {
 
 		User user = User.find("email = ?1", Security.connected()).first();
 
-		List<Map<String, Object>> list = Task
+		Set<Map<String, Object>> list = Task
 			.find("board_id = ?1 and progress = ?2 " +
 				"order by " +
 				"priority asc, " +
@@ -218,7 +218,7 @@ public class Board extends Controller {
 			.from(first)
 			.fetch(count)
 			.stream()
-			.map(t -> ((Task) t).toMap()).collect(Collectors.toList());
+			.map(t -> ((Task) t).toMap()).collect(Collectors.toSet());
 
 		map.put("ok", true);
 		map.put("tasks", list);

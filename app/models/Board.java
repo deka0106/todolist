@@ -1,12 +1,13 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderColumn;
 
 import play.db.jpa.Model;
 
@@ -22,22 +23,16 @@ public class Board extends Model {
 	/**
 	 * タスクリスト
 	 */
-	@OneToMany(cascade = CascadeType.ALL)
-	public List<Task> tasks;
-
-	/**
-	 * タグリスト
-	 */
-	@OneToMany(cascade = CascadeType.ALL)
-	public List<Tag> tags;
+	@OrderColumn
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "board")
+	public Set<Task> tasks;
 
 	/**
 	 * コンストラクタ
 	 */
 	public Board(User user) {
 		this.user = user;
-		this.tasks = new ArrayList<>();
-		this.tags = new ArrayList<>();
+		this.tasks = new HashSet<>();
 	}
 
 }

@@ -1,22 +1,15 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 
 import play.db.jpa.Model;
 
 @Entity
 public class Tag extends Model {
-
-	/**
-	 * ボード
-	 */
-	@ManyToOne
-	public Board board;
 
 	/**
 	 * タグネーム
@@ -27,7 +20,7 @@ public class Tag extends Model {
 	 * タグを持つタスク
 	 */
 	@ManyToMany
-	public List<Task> tasks;
+	public Set<Task> tasks;
 
 	/**
 	 * コンストラクタ
@@ -37,10 +30,9 @@ public class Tag extends Model {
 	 * @param name
 	 *            タグネーム
 	 */
-	public Tag(Board board, String name) {
-		this.board = board;
+	public Tag(String name) {
 		this.name = name;
-		this.tasks = new ArrayList<>();
+		this.tasks = new HashSet<>();
 	}
 
 }
